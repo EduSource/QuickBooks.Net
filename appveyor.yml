@@ -23,7 +23,7 @@ build:
   publish_nuget: true
 deploy:
   provider: NuGet
-    secure: TMn7y9Ql9aUaMvIrZMswI0xiga4PiKWN2RsdAfOgDxUfCxHLLJcjx1t2wXN31Q9i
+  secure: TMn7y9Ql9aUaMvIrZMswI0xiga4PiKWN2RsdAfOgDxUfCxHLLJcjx1t2wXN31Q9i
   on:
     branch: master
   api_key:
