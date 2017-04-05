@@ -19,7 +19,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="QuickBooks.Net.dll" target="" />
-    <file src="QuickBooks.Net.Data.dll" target="" />
+    <file src="bin/Debug/netcoreapp1.1/QuickBooks.Net.dll" target="" />
+    <file src="bin/Debug/netcoreapp1.1/QuickBooks.Net.Data.dll" target="" />
   </files>
 </package>
