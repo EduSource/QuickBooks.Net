@@ -19,6 +19,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="readme.md" target="" />
+    <file src="QuickBooks.Net.dll" target="" />
+    <file src="QuickBooks.Net.Data.dll" target="" />
   </files>
 </package>
