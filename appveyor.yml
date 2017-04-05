@@ -15,11 +15,7 @@ build_script:
 - dotnet build "QuickBooks.Net.Data" -c %CONFIGURATION% --version-suffix %LABEL%
 - dotnet build "QuickBooks.Net" -c %CONFIGURATION% --version-suffix %LABEL%
 after_build:
-- dotnet pack "QuickBooks.Net" -c %CONFIGURATION% --version-suffix %LABEL% -o artifacts
-- dotnet pack "QuickBooks.Net.Data" -c %CONFIGURATION% --version-suffix %LABEL% -o artifacts
+- dotnet pack "QuickBooks.Net" -c %CONFIGURATION% -o artifacts
+- dotnet pack "QuickBooks.Net.Data" -c %CONFIGURATION% -o artifacts
 artifacts:
 - path: artifacts\**\*.*
-- path: artifacts\**\*.*.*
-on_finish: # Run the demo to show that it works
-- dotnet artifacts\QuickBooks.Net\QuickBooks.Net.dll
-- dotnet artifacts\QuickBooks.Net.Data\QuickBooks.Net.Data.dll
