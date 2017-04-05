@@ -19,3 +19,12 @@ after_build:
 - dotnet pack "QuickBooks.Net.Data" -c %CONFIGURATION% -o artifacts
 artifacts:
 - path: artifacts\**\*.*
+build:
+  publish_nuget: true
+deploy:
+  provider: NuGet
+  api_key:
+    secure: TMn7y9Ql9aUaMvIrZMswI0xiga4PiKWN2RsdAfOgDxUfCxHLLJcjx1t2wXN31Q9i
+  skip_symbols: true
+  artifact: /.*\.nupkg/
+

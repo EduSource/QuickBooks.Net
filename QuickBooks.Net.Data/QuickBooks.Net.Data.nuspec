@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>QuickBooks.NET</id>
+    <id>QuickBooks.NET.Data</id>
     <version>1.0.0</version>
     <authors>Ben Duggan, Andrew Smith, Ryan Szemplinski</authors>
     <owners>rszemplinski</owners>
@@ -13,12 +13,9 @@
     <tags>api quickbooks qb</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="9.0.1" />
-      <dependency id="Flurl.Http" version="1.1.1" />
-      <dependency id="OAuth.DotNetCore" version="1.0.4" />
-      <dependency id="QuickBooks.Net.Data" version="1.0.1" />
     </dependencies>
   </metadata>
   <files>
-    <file src="lib/netcoreapp1.1/QuickBooks.Net.dll" target="" />
+    <file src="lib/netcoreapp1.1/QuickBooks.Net.Data.dll" target="" />
   </files>
 </package>
