@@ -1,12 +1,12 @@
 # QuickBooks.NET
 
-[![quickbooks-dotnet MyGet Build Status](https://www.myget.org/BuildSource/Badge/quickbooks-dotnet?identifier=cb8be901-a8ad-4acc-8379-b763aacf22d6)](https://www.myget.org/)
+[![Build status](https://ci.appveyor.com/api/projects/status/7h6glucqas9l3typ?svg=true)](https://ci.appveyor.com/project/benaduggan/quickbooks-net)
 
 This project is a open source api client library to interact with the [QuickBooks API](https://developer.intuit.com/docs/api/accounting) built for dotnet core.
 
 ## Installation
 
-QuickBooks.NET will be available on NuGet soon
+QuickBooks.Net is be available on [NuGet](https://www.nuget.org/packages/QuickBooks.Net/)
 
 ## Usage
 
