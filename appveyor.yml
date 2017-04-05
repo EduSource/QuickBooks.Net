@@ -20,4 +20,5 @@ after_build:
 artifacts:
 - path: artifacts\**\*.*
 on_finish: # Run the demo to show that it works
-- dotnet artifacts\ConsoleApplication\ConsoleApplication.dll
+- dotnet artifacts\QuickBooks.Net\QuickBooks.Net.dll
+- dotnet artifacts\QuickBooks.Net.Data\QuickBooks.Net.Data.dll
