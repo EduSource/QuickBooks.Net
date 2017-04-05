@@ -1,5 +1,5 @@
 {
-  "version": "1.0.*",
+  "version": "1.0.2-*",
   "tooling": {
       "defaultNamespace": "QuickBooks.Net"
   },
@@ -12,7 +12,7 @@
     "Flurl.Http": "1.1.2",
     "Newtonsoft.Json": "9.0.1",
     "morelinq": "2.2.0",
-    "QuickBooks.Net.Data": "1.0.*"
+    "QuickBooks.Net.Data": "1.0.2-*"
   },
   "frameworks": {
     "netcoreapp1.1": {
