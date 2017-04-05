@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>QuickBooks.NET</id>
+    <version>1.0.0</version>
+    <authors>Ben Duggan, Andrew Smith, Ryan Szemplinski</authors>
+    <owners>rszemplinski</owners>
+    <projectUrl>https://github.com/EduSource/QuickBooks.Net</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A C# api wrapper for QuickBooks</description>
+    <releaseNotes>Initial Release</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>api quickbooks qb</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="9.0.1" />
+      <dependency id="Flurl.Http" version="1.1.1" />
+      <dependency id="OAuth.DotNetCore" version="1.0.4" />
+      <dependency id="QuickBooks.Net.Data" version="1.0.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="readme.md" target="" />
+  </files>
+</package>

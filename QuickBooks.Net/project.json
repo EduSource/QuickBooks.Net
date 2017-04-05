@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0-*",
+  "tooling": {
+      "defaultNamespace": "QuickBooks.Net"
+  },
+  "buildOptions": {
+    "debugType": "portable",
+    "emitEntryPoint": true
+  },
+  "dependencies": {
+    "OAuth.DotNetCore": "1.0.4",
+    "Flurl.Http": "1.1.2",
+    "Newtonsoft.Json": "9.0.1",
+    "QuickBooks.Net.Data": "1.0.1",
+    "morelinq": "2.2.0"
+  },
+  "frameworks": {
+    "netcoreapp1.1": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.1.0"
+        }
+      },
+      "imports": "dnxcore50"
+    }
+  }
+}
