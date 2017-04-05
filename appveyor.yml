@@ -23,10 +23,10 @@ build:
   publish_nuget: true
 deploy:
   provider: NuGet
-  secure: TMn7y9Ql9aUaMvIrZMswI0xiga4PiKWN2RsdAfOgDxUfCxHLLJcjx1t2wXN31Q9i
+  api_key:
+    secure: EF8tqT6/U0vyWo4tF9h0Z8dat/h+QD9kBMgTbrM+N5QKBn06G9P7qsbvwXhI/e9R
   on:
     branch: master
-  api_key:
   skip_symbols: true
   artifact: /.*\.nupkg/
 
