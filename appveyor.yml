@@ -1,6 +1,5 @@
 version: '1.0.{build}'
 configuration:
-- Debug
 - Release
 platform: Any CPU
 environment:
@@ -11,14 +10,15 @@ init:
 before_build:
 - appveyor-retry dotnet restore -v Minimal
 build_script:
-- dotnet build "QuickBooks.Net.Tests" -c %CONFIGURATION% --version-suffix %LABEL%
-- dotnet build "QuickBooks.Net.Data" -c %CONFIGURATION% --version-suffix %LABEL%
-- dotnet build "QuickBooks.Net" -c %CONFIGURATION% --version-suffix %LABEL%
+- dotnet build "QuickBooks.Net.Tests" -c %CONFIGURATION% --version-suffix %BUILD%
+- dotnet build "QuickBooks.Net.Data" -c %CONFIGURATION% --version-suffix %BUILD%
+- dotnet build "QuickBooks.Net" -c %CONFIGURATION% --version-suffix %BUILD%
 after_build:
-- dotnet pack "QuickBooks.Net" -c %CONFIGURATION% -o artifacts
-- dotnet pack "QuickBooks.Net.Data" -c %CONFIGURATION% -o artifacts
+- dotnet pack "QuickBooks.Net" -c %CONFIGURATION% -o artifacts --version-suffix %BUILD%
+- dotnet pack "QuickBooks.Net.Data" -c %CONFIGURATION% -o artifacts --version-suffix %BUILD%
 artifacts:
 - path: artifacts\**\*.*
+
 build:
   publish_nuget: true
 deploy:
