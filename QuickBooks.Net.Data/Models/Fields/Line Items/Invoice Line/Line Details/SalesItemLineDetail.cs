@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace QuickBooks.Net.Data.Models.Fields.Line_Items.Invoice_Line.Line_Details
 {
@@ -24,6 +25,9 @@ namespace QuickBooks.Net.Data.Models.Fields.Line_Items.Invoice_Line.Line_Details
 
         [JsonProperty("TaxInclusiveAmt", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public decimal TaxInclusiveAmount { get; set; }
+
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public DateTime ServiceDate { get; set; }
 
         public override LineDetailType Type { get { return LineDetailType.SalesItemLineDetail; } }
     }
