@@ -111,6 +111,9 @@ namespace QuickBooks.Net.Data.Models
         [JsonProperty("ARAcocuntRef", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public Ref ArAccountRef { get; set; }
 
+        [JsonProperty("AcctNum", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string AccountNumber { get; set; }
+
         internal override QuickBooksBaseModel CreateReturnObject()
         {
             var customer = new Customer
@@ -141,6 +144,7 @@ namespace QuickBooks.Net.Data.Models
                 BalanceWithJobs = BalanceWithJobs,
                 PreferredDeliveryMethod = PreferredDeliveryMethod,
                 ResaleNumber = ResaleNumber,
+                AccountNumber = AccountNumber,
             };
 
             if (!customer.Job && customer.ParentRef != null)
