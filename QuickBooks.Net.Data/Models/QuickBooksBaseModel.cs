@@ -23,8 +23,8 @@ namespace QuickBooks.Net.Data.Models
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)] 
         public MetaData MetaData { get; internal set; }
 
-        internal abstract QuickBooksBaseModel CreateReturnObject();
-        internal abstract QuickBooksBaseModel UpdateReturnObject();
-        internal abstract QuickBooksBaseModel DeleteReturnObject();
+        public abstract QuickBooksBaseModel CreateReturnObject();
+        public abstract QuickBooksBaseModel UpdateReturnObject();
+        public abstract QuickBooksBaseModel DeleteReturnObject();
     }
 }

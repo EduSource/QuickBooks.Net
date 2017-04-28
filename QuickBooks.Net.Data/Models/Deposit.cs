@@ -62,17 +62,17 @@ namespace QuickBooks.Net.Data.Models
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string TransactionLocationType { get; set; }
 
-        internal override QuickBooksBaseModel CreateReturnObject()
+        public override QuickBooksBaseModel CreateReturnObject()
         {
             throw new NotImplementedException();
         }
 
-        internal override QuickBooksBaseModel UpdateReturnObject()
+        public override QuickBooksBaseModel UpdateReturnObject()
         {
             throw new NotImplementedException();
         }
 
-        internal override QuickBooksBaseModel DeleteReturnObject()
+        public override QuickBooksBaseModel DeleteReturnObject()
         {
             throw new NotImplementedException();
         }

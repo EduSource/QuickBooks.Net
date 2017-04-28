@@ -31,7 +31,7 @@ namespace QuickBooks.Net.Data.Models.Batch
             }
         }
 
-        internal MultiBatchResponse()
+        public MultiBatchResponse()
         {
             this.responses = new List<BatchResponse<T>>();
         }
