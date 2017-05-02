@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.6;net462</TargetFrameworks>
+    <Authors>Ben Duggan, Andrew Smith, Ryan Szemplinski</Authors>
+    <PackageProjectUrl>https://github.com/EduSource/QuickBooks.Net</PackageProjectUrl>
+    <Description>A C# api wrapper for QuickBooks</Description>
+    <Company>QuickBooks.Net</Company>
+    <Product>QuickBooks.Net</Product>
+    <PackageTags>api quickbooks qb</PackageTags>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <Copyright>Copyright 2017</Copyright>
+    <VersionSuffix>0</VersionSuffix>
+    <Version>1.0.$(VersionSuffix)</Version>
   </PropertyGroup>
 
   <ItemGroup>
