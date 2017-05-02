@@ -10,12 +10,12 @@ init:
 before_build:
 - appveyor-retry dotnet restore -v Minimal
 build_script:
-- dotnet build "QuickBooks.Net.Tests" -c %CONFIGURATION% --version-suffix %APPVEYOR_BUILD_ID%
-- dotnet build "QuickBooks.Net.Data" -c %CONFIGURATION% --version-suffix %APPVEYOR_BUILD_ID%
-- dotnet build "QuickBooks.Net" -c %CONFIGURATION% --version-suffix %APPVEYOR_BUILD_ID%
+- dotnet build "QuickBooks.Net.Tests" -c %CONFIGURATION% /property:version=%APPVEYOR_BUILD_VERSION%
+- dotnet build "QuickBooks.Net.Data" -c %CONFIGURATION% /property:version=%APPVEYOR_BUILD_VERSION%
+- dotnet build "QuickBooks.Net" -c %CONFIGURATION% /property:version=%APPVEYOR_BUILD_VERSION%
 after_build:
-- dotnet pack "QuickBooks.Net.Data" -c %CONFIGURATION% -o ../artifacts --version-suffix %APPVEYOR_BUILD_ID%
-- dotnet pack "QuickBooks.Net" -c %CONFIGURATION% -o ../artifacts --version-suffix %APPVEYOR_BUILD_ID%
+- dotnet pack "QuickBooks.Net.Data" -c %CONFIGURATION% -o ../artifacts /property:version=%APPVEYOR_BUILD_VERSION%
+- dotnet pack "QuickBooks.Net" -c %CONFIGURATION% -o ../artifacts /property:version=%APPVEYOR_BUILD_VERSION%
 artifacts:
 - path: artifacts\*.*
 

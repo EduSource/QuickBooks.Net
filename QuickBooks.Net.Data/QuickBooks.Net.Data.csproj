@@ -10,8 +10,8 @@
     <PackageTags>api quickbooks qb</PackageTags>
     <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
     <Copyright>Copyright 2017</Copyright>
-    <VersionSuffix>0</VersionSuffix>
-    <Version>1.0.$(VersionSuffix)</Version>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
