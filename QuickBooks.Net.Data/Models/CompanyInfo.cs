@@ -67,19 +67,19 @@ namespace QuickBooks.Net.Data.Models
         public List<NameValuePair<string, string>> NameValues { get; set; }
 
         // Can't create company info
-        public override QuickBooksBaseModel CreateReturnObject()
+        internal override QuickBooksBaseModel CreateReturnObject()
         {
             throw new NotImplementedException();
         }
 
         // Can't update company info
-        public override QuickBooksBaseModel UpdateReturnObject()
+        internal override QuickBooksBaseModel UpdateReturnObject()
         {
             throw new NotImplementedException();
         }
 
         // Can't delete company info
-        public override QuickBooksBaseModel DeleteReturnObject()
+        internal override QuickBooksBaseModel DeleteReturnObject()
         {
             throw new NotImplementedException();
         }

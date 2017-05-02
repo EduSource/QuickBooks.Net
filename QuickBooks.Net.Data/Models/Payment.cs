@@ -57,17 +57,17 @@ namespace QuickBooks.Net.Data.Models
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string TransactionLocationType { get; set; }
 
-        public override QuickBooksBaseModel CreateReturnObject()
+        internal override QuickBooksBaseModel CreateReturnObject()
         {
             throw new NotImplementedException();
         }
 
-        public override QuickBooksBaseModel UpdateReturnObject()
+        internal override QuickBooksBaseModel UpdateReturnObject()
         {
             throw new NotImplementedException();
         }
 
-        public QuickBooksBaseModel VoidReturnObject()
+        internal QuickBooksBaseModel VoidReturnObject()
         {
             return new Payment
             {
@@ -77,7 +77,7 @@ namespace QuickBooks.Net.Data.Models
             };
         }
 
-        public override QuickBooksBaseModel DeleteReturnObject()
+        internal override QuickBooksBaseModel DeleteReturnObject()
         {
             throw new NotImplementedException();
         }

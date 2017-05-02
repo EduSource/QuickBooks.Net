@@ -144,7 +144,7 @@ namespace QuickBooks.Net.Data.Models
         public bool AllowOnlineACHPayment { get; set; }
 
 
-        public override QuickBooksBaseModel CreateReturnObject()
+        internal override QuickBooksBaseModel CreateReturnObject()
         {
             var invoice = new Invoice
             {
@@ -192,12 +192,12 @@ namespace QuickBooks.Net.Data.Models
             return invoice;
         }
 
-        public override QuickBooksBaseModel UpdateReturnObject()
+        internal override QuickBooksBaseModel UpdateReturnObject()
         {
             return this;
         }
 
-        public override QuickBooksBaseModel DeleteReturnObject()
+        internal override QuickBooksBaseModel DeleteReturnObject()
         {
             return new Invoice
             {
@@ -207,7 +207,7 @@ namespace QuickBooks.Net.Data.Models
         }
 
         // Void needs the same properties as Delete does
-        public QuickBooksBaseModel VoidReturnObject()
+        internal QuickBooksBaseModel VoidReturnObject()
         {
             return DeleteReturnObject();
         }

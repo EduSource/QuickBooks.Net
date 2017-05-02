@@ -111,7 +111,7 @@ namespace QuickBooks.Net.Data.Models
         [JsonProperty("ARAcocuntRef", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public Ref ArAccountRef { get; set; }
 
-        public override QuickBooksBaseModel CreateReturnObject()
+        internal override QuickBooksBaseModel CreateReturnObject()
         {
             var customer = new Customer
             {
@@ -149,12 +149,12 @@ namespace QuickBooks.Net.Data.Models
             return customer;
         }
 
-        public override QuickBooksBaseModel UpdateReturnObject()
+        internal override QuickBooksBaseModel UpdateReturnObject()
         {
             return this;
         }
 
-        public override QuickBooksBaseModel DeleteReturnObject()
+        internal override QuickBooksBaseModel DeleteReturnObject()
         {
             return new Customer
             {
