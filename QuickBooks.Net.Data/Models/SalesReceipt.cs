@@ -35,7 +35,7 @@ namespace QuickBooks.Net.Data.Models
         [JsonProperty("Line", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public List<InvoiceLine> Lines { get; set; }
 
-        public override QuickBooksBaseModel CreateReturnObject()
+        internal override QuickBooksBaseModel CreateReturnObject()
         {
             var salesReceipt = new SalesReceipt()
             {
@@ -53,7 +53,7 @@ namespace QuickBooks.Net.Data.Models
             return salesReceipt;
         }
 
-        public override QuickBooksBaseModel DeleteReturnObject()
+        internal override QuickBooksBaseModel DeleteReturnObject()
         {
             return new SalesReceipt()
             {
@@ -62,13 +62,13 @@ namespace QuickBooks.Net.Data.Models
             };
         }
 
-        public override QuickBooksBaseModel UpdateReturnObject()
+        internal override QuickBooksBaseModel UpdateReturnObject()
         {
             return this;
         }
 
         // Void needs the same properties as Delete does
-        public QuickBooksBaseModel VoidReturnObject()
+        internal QuickBooksBaseModel VoidReturnObject()
         {
             return DeleteReturnObject();
         }
