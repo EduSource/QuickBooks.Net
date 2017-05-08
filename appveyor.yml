@@ -10,7 +10,6 @@ init:
 build_script:
 
 - dotnet pack QuickBooks.Net.sln "/t:Restore;Pack" -c %CONFIGURATION% /property:version=%APPVEYOR_BUILD_VERSION% -o ../artifacts 
-
 artifacts:
 - path: artifacts\*.*
 
