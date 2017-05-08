@@ -8,15 +8,10 @@ environment:
 init:
 - ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
 build_script:
-- dotnet restore "QuickBooks.Net.Tests" -v Minimal
-- dotnet build "QuickBooks.Net.Tests" -c %CONFIGURATION% /property:version=%APPVEYOR_BUILD_VERSION%
-- dotnet restore "QuickBooks.Net.Data" -v Minimal
-- dotnet build "QuickBooks.Net.Data" -c %CONFIGURATION% /property:version=%APPVEYOR_BUILD_VERSION%
-- dotnet pack "QuickBooks.Net.Data" -c %CONFIGURATION% -o ../artifacts /property:version=%APPVEYOR_BUILD_VERSION%
 
-- dotnet restore "QuickBooks.Net" -v Minimal
-- dotnet build "QuickBooks.Net" -c %CONFIGURATION% /property:version=%APPVEYOR_BUILD_VERSION%
-- dotnet pack "QuickBooks.Net" -c %CONFIGURATION% -o ../artifacts /property:version=%APPVEYOR_BUILD_VERSION%
+- dotnet build QuickBooks.Net.sln -c %CONFIGURATION% /property:version=%APPVEYOR_BUILD_VERSION%
+- dotnet pack QuickBooks.Net.sln "/t:Restore;Pack" -c %CONFIGURATION% /property:version=%APPVEYOR_BUILD_VERSION% -o ../artifacts 
+
 artifacts:
 - path: artifacts\*.*
 
