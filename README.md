@@ -31,10 +31,14 @@ var customerCount = await qb.Customers.GetCustomerAsync(1);
 
 We welcome anyone to submit pull requests and issues for this project. It is a work in progress, so currently we have built the pieces we needed for our use case, but would love to make it more robust and useful for more people. We will try to respond to issues as quickly as we can get to them.
 
-## Developers
+## Maintainers
 - [Andrew Smith](https://github.com/andrew-smith3)
 - [Ben Duggan](https://github.com/benaduggan)
 - [Ryan Szemplinski](https://github.com/rszemplinski)
+
+## Contributors
+- [Chris Meller](https://github.com/chrismeller)
+
 
 ## Open Source Credits:
 
