@@ -8,10 +8,8 @@ environment:
 init:
 - ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
 build_script:
-
 - dotnet build QuickBooks.Net.sln -c %CONFIGURATION% /property:version=%APPVEYOR_BUILD_VERSION%
 - dotnet pack QuickBooks.Net.sln "/t:Restore;Pack" -c %CONFIGURATION% /property:version=%APPVEYOR_BUILD_VERSION% -o ../artifacts 
-
 artifacts:
 - path: artifacts\*.*
 
