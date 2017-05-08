@@ -7,14 +7,14 @@ environment:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
 init:
 - ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
-before_build:
-- appveyor-retry dotnet restore -v Minimal
 build_script:
 - dotnet build "QuickBooks.Net.Tests" -c %CONFIGURATION% /property:version=%APPVEYOR_BUILD_VERSION%
+- dotnet restore "QuickBooks.Net.Data" -v Minimal
 - dotnet build "QuickBooks.Net.Data" -c %CONFIGURATION% /property:version=%APPVEYOR_BUILD_VERSION%
-- dotnet build "QuickBooks.Net" -c %CONFIGURATION% /property:version=%APPVEYOR_BUILD_VERSION%
-after_build:
 - dotnet pack "QuickBooks.Net.Data" -c %CONFIGURATION% -o ../artifacts /property:version=%APPVEYOR_BUILD_VERSION%
+
+- dotnet restore "QuickBooks.Net" -v Minimal
+- dotnet build "QuickBooks.Net" -c %CONFIGURATION% /property:version=%APPVEYOR_BUILD_VERSION%
 - dotnet pack "QuickBooks.Net" -c %CONFIGURATION% -o ../artifacts /property:version=%APPVEYOR_BUILD_VERSION%
 artifacts:
 - path: artifacts\*.*
