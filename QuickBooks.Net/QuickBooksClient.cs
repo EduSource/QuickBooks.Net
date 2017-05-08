@@ -41,6 +41,7 @@ namespace QuickBooks.Net
         public IInvoiceController Invoices { get; }
         public IPaymentController Payments { get; }
         public IDepositController Deposits { get; }
+        public ISalesReceiptController SalesReceipts { get; }
 
         public QuickBooksClient()
         {
@@ -49,6 +50,7 @@ namespace QuickBooks.Net
             Invoices = new InvoiceController(this, OAuthVersion);
             Payments = new PaymentController(this, OAuthVersion);
             Deposits = new DepositController(this, OAuthVersion);
+            SalesReceipts = new SalesReceiptController(this, OAuthVersion);
         }
 
         public QuickBooksClient(string consumerKey, string consumerSecret, string accessToken, string accessTokenSecret, 
