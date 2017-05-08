@@ -5,9 +5,7 @@
 project.lock.json
 .DS_Store
 
-*.sln
 *.xproj
-*.csproj
 
 # User-specific files
 *.suo

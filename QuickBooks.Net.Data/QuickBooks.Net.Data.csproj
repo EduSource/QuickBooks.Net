@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.6;net462</TargetFrameworks>
+    <Authors>Ben Duggan, Andrew Smith, Ryan Szemplinski</Authors>
+    <PackageProjectUrl>https://github.com/EduSource/QuickBooks.Net</PackageProjectUrl>
+    <Description>A C# api wrapper for QuickBooks</Description>
+    <Company>QuickBooks.Net</Company>
+    <Product>QuickBooks.Net</Product>
+    <PackageTags>api quickbooks qb</PackageTags>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <Copyright>Copyright 2017</Copyright>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+
+</Project>
