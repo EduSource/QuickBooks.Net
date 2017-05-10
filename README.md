@@ -38,6 +38,7 @@ We welcome anyone to submit pull requests and issues for this project. It is a w
 
 ## Contributors
 - [Chris Meller](https://github.com/chrismeller)
+- [Ryan Anthony](https://github.com/ryandanthony)
 
 
 ## Open Source Credits:
