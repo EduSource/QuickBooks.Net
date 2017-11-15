@@ -1,33 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.6;net462</TargetFrameworks>
+    <TargetFrameworks>net462;netstandard1.6</TargetFrameworks>
     <Authors>Ben Duggan, Andrew Smith, Ryan Szemplinski</Authors>
     <PackageProjectUrl>https://github.com/EduSource/QuickBooks.Net</PackageProjectUrl>
     <Description>A C# api wrapper for QuickBooks</Description>
     <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
     <PackageTags>api quickbooks qb</PackageTags>
     <Copyright>Copyright 2017</Copyright>
-    <Version>1.0.0</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Flurl.Http" Version="1.1.2" />
     <PackageReference Include="morelinq" Version="2.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
   </ItemGroup>
-
   <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
     <PackageReference Include="OAuth" Version="1.0.3" />
   </ItemGroup>
-
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
     <PackageReference Include="OAuth.DotNetCore" Version="1.0.4" />
   </ItemGroup>
-      
   <ItemGroup>
     <ProjectReference Include="..\QuickBooks.Net.Data\QuickBooks.Net.Data.csproj" />
   </ItemGroup>
-
 </Project>

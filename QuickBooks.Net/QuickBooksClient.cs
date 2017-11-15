@@ -42,6 +42,7 @@ namespace QuickBooks.Net
         public IPaymentController Payments { get; }
         public IDepositController Deposits { get; }
         public ISalesReceiptController SalesReceipts { get; }
+        public IClassController Classes { get; }
 
         public QuickBooksClient()
         {
@@ -51,9 +52,10 @@ namespace QuickBooks.Net
             Payments = new PaymentController(this, OAuthVersion);
             Deposits = new DepositController(this, OAuthVersion);
             SalesReceipts = new SalesReceiptController(this, OAuthVersion);
+            Classes = new ClassController(this, OAuthVersion);
         }
 
-        public QuickBooksClient(string consumerKey, string consumerSecret, string accessToken, string accessTokenSecret, 
+        public QuickBooksClient(string consumerKey, string consumerSecret, string accessToken, string accessTokenSecret,
                 string callbackUrl, bool sandboxMode, string realmId, string minorVersion) : this()
         {
             ConsumerKey = consumerKey;
@@ -188,10 +190,10 @@ namespace QuickBooks.Net
                 var tokens = result.Split('&').Select(x => x.Split('=')).ToDictionary(split => split[0], split => split[1]);
                 return new AuthTokenInfo(AuthorizeUrl) { OAuthToken = tokens["oauth_token"], OAuthTokenSecret = tokens["oauth_token_secret"] };
             }
-            catch(FlurlHttpException ex)
+            catch (FlurlHttpException ex)
             {
                 throw new UnauthorizedQuickBooksClientException(
-                    "QuickBooks returned with an unauthorized response. Be sure your consumer key and consumer secret are correct.", 
+                    "QuickBooks returned with an unauthorized response. Be sure your consumer key and consumer secret are correct.",
                     ex.InnerException);
             }
         }
@@ -216,10 +218,10 @@ namespace QuickBooks.Net
                 var accessTokens = result.Split('&').Select(x => x.Split('=')).ToDictionary(split => split[0], split => split[1]);
                 return new AccessTokenInfo { AccessToken = accessTokens["oauth_token"], AccessTokenSecret = accessTokens["oauth_token_secret"] };
             }
-            catch(FlurlHttpException ex)
+            catch (FlurlHttpException ex)
             {
                 throw new UnauthorizedQuickBooksClientException(
-                    "Unable to get access tokens.", 
+                    "Unable to get access tokens.",
                     ex.InnerException);
             }
         }
