@@ -23,6 +23,7 @@ namespace QuickBooks.Net
         IPaymentController Payments { get; }
         IDepositController Deposits { get; }
         ISalesReceiptController SalesReceipts { get; }
+        IClassController Classes { get; }
 
         Task<QuickBooksUser> GetCurrentUser();
         Task DisconnectAccount();
