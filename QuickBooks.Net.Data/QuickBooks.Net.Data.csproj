@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net462;netstandard1.6</TargetFrameworks>
     <Authors>Ben Duggan, Andrew Smith, Ryan Szemplinski</Authors>
     <PackageProjectUrl>https://github.com/EduSource/QuickBooks.Net</PackageProjectUrl>
     <Description>A C# api wrapper for QuickBooks</Description>
