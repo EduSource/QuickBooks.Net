@@ -44,7 +44,8 @@ namespace QuickBooks.Net.Data.Models
             {
                 Id = Id,
                 SyncToken = SyncToken,
-                Active = false
+                Active = false,
+                Name = Name
             };
         }
     }
