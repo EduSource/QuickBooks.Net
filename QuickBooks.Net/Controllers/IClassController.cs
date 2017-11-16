@@ -7,7 +7,7 @@ namespace QuickBooks.Net.Controllers
 {
     public interface IClassController
     {
-        Task<Class> GetClassAsync(int classId);
+        Task<Class> GetClassAsync(string classId);
 
         Task<IEnumerable<Class>> GetClassesAsync(bool activeAndInactive = false, bool onlyInactive = false,
             int startPosition = 1, int maxResults = 100);
@@ -30,7 +30,7 @@ namespace QuickBooks.Net.Controllers
 
         Task<Class> DeactiveClassAsync(Class classModel);
 
-        Task<Class> DeactiveClassAsync(int classId, int syncToken);
+        Task<Class> DeactiveClassAsync(string classId, int syncToken);
 
         Task<IBatchResponse<Class>> DeactivateClassesAsync(IEnumerable<Class> classModels);
 

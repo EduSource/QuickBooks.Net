@@ -15,9 +15,9 @@ namespace QuickBooks.Net.Controllers
         {
         }
 
-        public async Task<Class> GetClassAsync(int classId)
+        public async Task<Class> GetClassAsync(string classId)
         {
-            return await GetRequest<Class>(classId);
+            return await GetRequestString<Class>(classId);
         }
 
         public async Task<IEnumerable<Class>> GetClassesAsync(bool activeAndInactive = false, bool onlyInactive = false, int startPosition = 1, int maxResults = 100)
@@ -36,12 +36,12 @@ namespace QuickBooks.Net.Controllers
                 query += " Where Active = False";
             }
 
-            return await QueryRequest<Class>(query, startPosition, maxResults);
+            return await QueryRequestString<Class>(query, startPosition, maxResults);
         }
 
         public async Task<IEnumerable<Class>> QueryClassesAsync(string query)
         {
-            return await QueryRequest<Class>(query, overrideOptions: true);
+            return await QueryRequestString<Class>(query, overrideOptions: true);
         }
 
         public async Task<int> GetClassCountAsync()
@@ -51,12 +51,12 @@ namespace QuickBooks.Net.Controllers
 
         public async Task<Class> CreateClassAsync(Class classModel)
         {
-            return await PostRequest(classModel.CreateReturnObject() as Class);
+            return await PostRequestString(classModel.CreateReturnObject() as Class);
         }
 
         public async Task<IBatchResponse<Class>> CreateClassesAsync(IEnumerable<Class> classModels)
         {
-            return await BatchRequest<Class>(classModels, BatchOperation.Create);
+            return await BatchRequestString<Class>(classModels, BatchOperation.Create);
         }
 
         public async Task<IBatchResponse<Class>> CreateClassesAsync(params Class[] classModels)
@@ -66,12 +66,12 @@ namespace QuickBooks.Net.Controllers
 
         public async Task<Class> UpdateClassAsync(Class classModel)
         {
-            return await PostRequest(classModel.UpdateReturnObject() as Class, true);
+            return await PostRequestString(classModel.UpdateReturnObject() as Class, true);
         }
 
         public async Task<IBatchResponse<Class>> UpdateClassesAsync(IEnumerable<Class> classModels)
         {
-            return await BatchRequest<Class>(classModels, BatchOperation.Update);
+            return await BatchRequestString<Class>(classModels, BatchOperation.Update);
         }
 
         public async Task<IBatchResponse<Class>> UpdateClassesAsync(params Class[] classModels)
@@ -81,10 +81,10 @@ namespace QuickBooks.Net.Controllers
 
         public async Task<Class> DeactiveClassAsync(Class classModel)
         {
-            return await PostRequest(classModel.DeleteReturnObject() as Class, true);
+            return await PostRequestString(classModel.DeleteReturnObject() as Class, true);
         }
 
-        public async Task<Class> DeactiveClassAsync(int classId, int syncToken)
+        public async Task<Class> DeactiveClassAsync(string classId, int syncToken)
         {
             return await DeactiveClassAsync(new Class
             {
@@ -95,7 +95,7 @@ namespace QuickBooks.Net.Controllers
 
         public async Task<IBatchResponse<Class>> DeactivateClassesAsync(IEnumerable<Class> classModels)
         {
-            return await BatchRequest<Class>(classModels.Select(x => x.DeleteReturnObject() as Class), BatchOperation.Update);
+            return await BatchRequestString<Class>(classModels.Select(x => x.DeleteReturnObject() as Class), BatchOperation.Update);
         }
 
         public async Task<IBatchResponse<Class>> DeactivateClassesAsync(params Class[] classModels)
