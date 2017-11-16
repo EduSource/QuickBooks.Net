@@ -66,14 +66,42 @@ namespace QuickBooks.Net.Controllers
             return result.Data;
         }
 
+        protected async Task<IEnumerable<T>> QueryRequestString<T>(string query, int startPosition = 1, int maxResult = 100, bool overrideOptions = false)
+            where T : QuickBooksBaseModelString
+        {
+            var additionalQuery = overrideOptions ? "" : $" startposition {startPosition} maxresults {maxResult}";
+            var content = new StringContent(query + additionalQuery, Encoding.UTF8, "application/text");
+
+            var result = await MakeRequest<QueryResponse<T>>("query", HttpMethod.Post, content, isQuery: true);
+            return result.Data;
+        }
+
         protected async Task<T> GetRequest<T>(object entityId) where T : QuickBooksBaseModel
         {
             return await MakeRequest<T>(ObjectName.ToLower() + $"/{entityId}", HttpMethod.Get);
         }
 
-        internal QuickBooksBaseModel GetReturnObject<T> (T item, BatchOperation operation) where T : QuickBooksBaseModel
+        protected async Task<T> GetRequestString<T>(object entityId) where T : QuickBooksBaseModelString
         {
-            switch (operation) 
+            return await MakeRequest<T>(ObjectName.ToLower() + $"/{entityId}", HttpMethod.Get);
+        }
+
+        internal QuickBooksBaseModel GetReturnObject<T>(T item, BatchOperation operation) where T : QuickBooksBaseModel
+        {
+            switch (operation)
+            {
+                case BatchOperation.Create:
+                    return item.CreateReturnObject();
+                case BatchOperation.Update:
+                    return item.UpdateReturnObject();
+                default:
+                    return item.DeleteReturnObject();
+            }
+        }
+
+        internal QuickBooksBaseModelString GetReturnObjectString<T>(T item, BatchOperation operation) where T : QuickBooksBaseModelString
+        {
+            switch (operation)
             {
                 case BatchOperation.Create:
                     return item.CreateReturnObject();
@@ -99,10 +127,42 @@ namespace QuickBooks.Net.Controllers
 
             var multiBatchResponse = new MultiBatchResponse<T>();
             var itemBatches = items.Batch(30);
-            
-            itemBatches.ForEach((batch) => {
+
+            itemBatches.ForEach((batch) =>
+            {
                 var request = new BatchItemRequest(
                     batch.Select(x => GetReturnObject(x, operation)).ToList(),
+                    operation
+                );
+
+                var response = MakeRequest<BatchResponse<T>>("batch", HttpMethod.Post, content: request, batchRequest: true).Result;
+
+                multiBatchResponse.responses.Add(response);
+            });
+
+            return multiBatchResponse;
+        }
+
+        protected async Task<IBatchResponse<T>> BatchRequestString<T>(IEnumerable<T> items, BatchOperation operation) where T : QuickBooksBaseModelString
+        {
+            if (items.Count() <= 30)
+            {
+                var request = new BatchItemRequest(
+                    items.Select(x => GetReturnObjectString(x, operation)).ToList(),
+                    operation
+                );
+
+                var response = await MakeRequest<BatchResponse<T>>("batch", HttpMethod.Post, content: request, batchRequest: true);
+                return response;
+            }
+
+            var multiBatchResponse = new MultiBatchResponse<T>();
+            var itemBatches = items.Batch(30);
+
+            itemBatches.ForEach((batch) =>
+            {
+                var request = new BatchItemRequest(
+                    batch.Select(x => GetReturnObjectString(x, operation)).ToList(),
                     operation
                 );
 
@@ -121,6 +181,13 @@ namespace QuickBooks.Net.Controllers
                 update: update, delete: delete, additionalParams: additionalParams);
         }
 
+        protected async Task<T> PostRequestString<T>(T content, bool update = false, bool delete = false,
+            Dictionary<string, string> additionalParams = null) where T : QuickBooksBaseModelString
+        {
+            return await MakeRequest<T>(ObjectName.ToLower(), HttpMethod.Post, content,
+                update: update, delete: delete, additionalParams: additionalParams);
+        }
+
         protected async Task<T> SendEmailRequest<T>(string resourceUrl, Dictionary<string, string> additionalParams = null)
             where T : QuickBooksBaseModel
         {
@@ -129,9 +196,17 @@ namespace QuickBooks.Net.Controllers
                 emailRequest: true);
         }
 
-        protected async Task<byte []> DownloadFile(string resourceUrl, string contentType)
+        protected async Task<T> SendEmailRequestString<T>(string resourceUrl, Dictionary<string, string> additionalParams = null)
+            where T : QuickBooksBaseModelString
         {
-            return await MakeRequest<byte []>(resourceUrl, HttpMethod.Get, acceptType: contentType, fileDownload: true);
+            return await MakeRequest<T>($"{ObjectName.ToLower()}/{resourceUrl}", HttpMethod.Post,
+                new StringContent("", Encoding.UTF8, "application/octet-stream"), additionalParams: additionalParams,
+                emailRequest: true);
+        }
+
+        protected async Task<byte[]> DownloadFile(string resourceUrl, string contentType)
+        {
+            return await MakeRequest<byte[]>(resourceUrl, HttpMethod.Get, acceptType: contentType, fileDownload: true);
         }
 
         private async Task<T> MakeRequest<T>(string resourceUrl, HttpMethod requestMethod, object content = null, string acceptType = null,
@@ -156,13 +231,13 @@ namespace QuickBooks.Net.Controllers
             url = url.SetQueryParams(queryParams);
 
             var accept = Client.AcceptType;
-            if(!string.IsNullOrEmpty(acceptType))
+            if (!string.IsNullOrEmpty(acceptType))
             {
                 accept += $", {acceptType}";
             }
 
-            var client = url.WithHeaders(new 
-            { 
+            var client = url.WithHeaders(new
+            {
                 Accept = accept,
                 Authorization = GetAuthHeader(url, requestMethod, queryParams)
             });
@@ -171,11 +246,11 @@ namespace QuickBooks.Net.Controllers
             {
                 if (requestMethod == HttpMethod.Get)
                 {
-                    if(fileDownload)
+                    if (fileDownload)
                     {
-                        return (T) Convert.ChangeType(await client.GetBytesAsync(), typeof(T));
+                        return (T)Convert.ChangeType(await client.GetBytesAsync(), typeof(T));
                     }
-                    
+
                     var objectResponse = await client.GetJsonAsync<JObject>();
                     return objectResponse[ObjectName].ToObject<T>();
                 }
@@ -183,16 +258,16 @@ namespace QuickBooks.Net.Controllers
                 if (requestMethod == HttpMethod.Post)
                 {
                     var response = !emailRequest && !isQuery
-                        ? await client.PostJsonAsync(content) 
-                        : await client.PostAsync((HttpContent) content);
+                        ? await client.PostJsonAsync(content)
+                        : await client.PostAsync((HttpContent)content);
 
-                    if(isQuery)
+                    if (isQuery)
                     {
                         var queryContent = await response.Content.ReadAsStringAsync();
                         return JsonConvert.DeserializeObject<T>(queryContent);
                     }
 
-                    if(batchRequest)
+                    if (batchRequest)
                     {
                         var batchContent = await response.Content.ReadAsStringAsync();
                         return JsonConvert.DeserializeObject<T>(batchContent);
@@ -233,7 +308,7 @@ namespace QuickBooks.Net.Controllers
                 throw new QuickBooksException("A Quickbooks exception occurred.", response);
             }
         }
-        
+
 
         private string GetAuthHeader(string url, HttpMethod method, IDictionary<string, string> queryParams)
         {

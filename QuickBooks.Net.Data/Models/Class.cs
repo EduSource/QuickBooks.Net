@@ -3,7 +3,7 @@ using QuickBooks.Net.Data.Models.Fields;
 
 namespace QuickBooks.Net.Data.Models
 {
-    public class Class : QuickBooksBaseModel
+    public class Class : QuickBooksBaseModelString
     {
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
@@ -20,10 +20,11 @@ namespace QuickBooks.Net.Data.Models
 
         public bool Active { get; set; }
 
-        internal override QuickBooksBaseModel CreateReturnObject()
+        internal override QuickBooksBaseModelString CreateReturnObject()
         {
             return new Class
             {
+                Id = Id,
                 Name = Name,
                 SubClass = SubClass,
                 ParentRef = ParentRef,
@@ -32,12 +33,12 @@ namespace QuickBooks.Net.Data.Models
             };
         }
 
-        internal override QuickBooksBaseModel UpdateReturnObject()
+        internal override QuickBooksBaseModelString UpdateReturnObject()
         {
             return this;
         }
 
-        internal override QuickBooksBaseModel DeleteReturnObject()
+        internal override QuickBooksBaseModelString DeleteReturnObject()
         {
             return new Class
             {
