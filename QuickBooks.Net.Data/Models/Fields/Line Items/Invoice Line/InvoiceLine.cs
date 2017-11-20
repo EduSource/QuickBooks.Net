@@ -24,6 +24,9 @@ namespace QuickBooks.Net.Data.Models.Fields.Line_Items.Invoice_Line
         [JsonProperty("Id", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int Id { get; set; }
 
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Ref ClassRef { get; set; }
+
         [JsonProperty("LineNum", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public decimal LineNumber { get; set; }
 
