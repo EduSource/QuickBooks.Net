@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net462;netstandard1.6</TargetFrameworks>
+    <TargetFrameworks>net462;netstandard1.6;netstandard2.0</TargetFrameworks>
     <Authors>Ben Duggan, Andrew Smith, Ryan Szemplinski</Authors>
     <PackageProjectUrl>https://github.com/EduSource/QuickBooks.Net</PackageProjectUrl>
     <Description>A C# api wrapper for QuickBooks</Description>
@@ -18,6 +18,9 @@
     <PackageReference Include="OAuth" Version="1.0.3" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
+    <PackageReference Include="OAuth.DotNetCore" Version="1.0.4" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <PackageReference Include="OAuth.DotNetCore" Version="1.0.4" />
   </ItemGroup>
   <ItemGroup>
