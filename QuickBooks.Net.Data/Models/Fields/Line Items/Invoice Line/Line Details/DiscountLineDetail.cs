@@ -6,6 +6,7 @@ namespace QuickBooks.Net.Data.Models.Fields.Line_Items.Invoice_Line.Line_Details
     {
         public bool PercentBased { get; set; }
 
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public decimal DiscountPercent { get; set; }
 
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
