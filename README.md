@@ -20,7 +20,7 @@ var qb = new QuickBooksClient
 {
     ConsumerKey = "{consumerKey}",
     ConsumerSecret = "{consumerSecret}",
-    AccessToken = "{access token}";,
+    AccessToken = "{access token}",
     AccessTokenSecret = "{access token secret}",
     CallbackUrl = "",
     RealmId = "{realmId}",
